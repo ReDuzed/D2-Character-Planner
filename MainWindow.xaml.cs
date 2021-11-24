@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +10,8 @@ using System.Windows.Controls;
 using System.Windows.Data;
 //using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
+using System.Windows.Interop;
+//using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -244,7 +247,11 @@ namespace D2CharacterPlanner
                 Vitality,
                 Energy,
                 MagicFind,
-                FCR;
+                FCR,
+                Resist_Fire,
+                Resist_Light,
+                Resist_Cold,
+                Resist_Poison;
             public static void Clear()
             {
                 Strength = 0;
@@ -253,6 +260,10 @@ namespace D2CharacterPlanner
                 Energy = 0;
                 MagicFind = 0;
                 FCR = 0;
+                Resist_Fire = 0;
+                Resist_Light = 0;
+                Resist_Cold = 0;
+                Resist_Poison = 0;
             }
         }
         class Attributes
@@ -302,6 +313,10 @@ namespace D2CharacterPlanner
             energy = "energy",
             magicFind = "magic",
             fcr = "fcr",
+            res_fire = "fire",
+            res_light = "lightning",
+            res_cold = "cold",
+            res_poison = "poison",
             req_strength = "req_str",
             req_dexterity = "req_dex",
             req_level = "req_level",
@@ -319,6 +334,48 @@ namespace D2CharacterPlanner
             fcr_flag = "isFcr",
             magic_flag = "isMagicFind",
             resist_flag = "isResist";
+        System.Windows.Vector draw_Position;                 
+        Block draw_Block;
+        const string Empty = "...";
+        private void Equipment_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Label label = (Label)sender;
+            if ((string)label.Content == Empty)
+                return;
+            var window = this.PointToScreen(new System.Windows.Point());
+            draw_Block = DB.block.FirstOrDefault(t => t.GetValue(name) == (string)label.Content);
+            draw_Position = label.PointToScreen(new System.Windows.Point()) - window;
+            string text = string.Format(
+                "+ Strength:     {0}\n" +
+                "+ Dexterity:    {1}\n" +
+                "+ Vitality:     {2}\n" +
+                "+ Energy:       {3}\n" +
+                "Magic Find %:   {4}\n" +
+                "FCR %:          {5}\n" +
+                "Fire res.:      {6}\n" +
+                "Lightning res.: {7}\n" +
+                "Cold res.:      {8}\n" +
+                "Poison res.:    {9}",
+                draw_Block.GetValue(strength),
+                draw_Block.GetValue(dexterity),
+                draw_Block.GetValue(vitality),
+                draw_Block.GetValue(energy),
+                draw_Block.GetValue(magicFind),
+                draw_Block.GetValue(fcr),
+                draw_Block.GetValue(res_fire),
+                draw_Block.GetValue(res_light),
+                draw_Block.GetValue(res_cold),
+                draw_Block.GetValue(res_poison)
+            );
+            block_info_gear.Margin = new Thickness(draw_Position.X + 15, draw_Position.Y + 30, 0, 0);
+            block_info_gear.Text = text;
+            block_info_gear.Visibility = Visibility.Visible;
+        }
+        private void Equipment_MouseLeave(object sender, MouseEventArgs e)
+        {
+            block_info_gear.Visibility = Visibility.Hidden;
+        }
+
         string Type;
         readonly string[] values = new string[] 
         { 
@@ -331,6 +388,10 @@ namespace D2CharacterPlanner
             energy,
             magicFind,
             fcr,
+            res_fire,
+            res_light,
+            res_cold,
+            res_poison,
             req_strength,
             req_dexterity,
             req_level,
@@ -597,7 +658,7 @@ namespace D2CharacterPlanner
             {
                 DB.GetBlock(dbName).WriteValue(active, "True");
             }
-            else if (!DB.BlockExists(dbName))
+            else if (!DB.BlockExists(dbName) && !string.IsNullOrWhiteSpace(Type))
             {
                 string text = "False";
                 if (checkbox_charm.IsChecked.Value)
@@ -613,18 +674,35 @@ namespace D2CharacterPlanner
                     box_gear_energy.Text,
                     box_gear_magic.Text,
                     box_gear_fcr.Text,
+                    box_gear_fire.Text,
+                    box_gear_light.Text,
+                    box_gear_cold.Text,
+                    box_gear_poison.Text,
                     box_gear_req_str.Text,
                     box_gear_req_dex.Text,
                     box_gear_req_level.Text,
                     text,
                     (box_gear_fcr.Text != "0" && !string.IsNullOrWhiteSpace(box_gear_fcr.Text)).ToString(),
                     (box_gear_magic.Text != "0" && !string.IsNullOrWhiteSpace(box_gear_magic.Text)).ToString(),
-                    "False"
+                    ((box_gear_fire.Text != "0" 
+                        && !string.IsNullOrWhiteSpace(box_gear_fire.Text))
+                        || (box_gear_light.Text != "0" 
+                        && !string.IsNullOrWhiteSpace(box_gear_light.Text))
+                        || (box_gear_cold.Text != "0" 
+                        && !string.IsNullOrWhiteSpace(box_gear_light.Text))
+                        || (box_gear_poison.Text != "0" 
+                        && !string.IsNullOrWhiteSpace(box_gear_poison.Text))).ToString()
                 }, dbName);
                 DB.WriteToFile();
+                flag = true;
             }
             else
             {
+                if (string.IsNullOrWhiteSpace(Type))
+                {
+                    MessageBox.Show("Select a classification of item from the Gear Types provided.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 MessageBox.Show("Database already contains item: " + name + ".", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
@@ -759,37 +837,41 @@ namespace D2CharacterPlanner
             for (int i = 0; i < equipped.Count; i++)
             {
                 Block item = equipped[i];
-                bool flag2 = int.TryParse(box_stats_str.Text, out req_str) &&
-                             int.TryParse(box_stats_dex.Text, out req_dex) &&
-                             int.TryParse(box_stats_level.Text, out req_lvl) &&
-                             int.TryParse(item.GetValue(req_strength), out item_str) &&
-                             int.TryParse(item.GetValue(req_dexterity), out item_dex) &&
-                             int.TryParse(item.GetValue(req_level), out item_level);
-                if (flag2)
-                {
-                    if (req_str < item_str)
-                        box_stats_str.Text = item_str.ToString();
-                    if (req_dex < item_dex)
-                        box_stats_dex.Text = item_dex.ToString();
-                    if (req_lvl < item_level)
-                        box_stats_level.Text = item_level.ToString();
-                }
-            
-                bool flag3 = int.TryParse(item.GetValue(strength), out item_str) &&
-                             int.TryParse(item.GetValue(dexterity), out item_dex) &&
-                             int.TryParse(item.GetValue(vitality), out item_vit) &&
-                             int.TryParse(item.GetValue(energy), out item_energy) &&
-                             int.TryParse(item.GetValue(magicFind), out item_magic) &&
-                             int.TryParse(item.GetValue(fcr), out item_fcr);
-                if (flag3)
-                {
-                    Equipment.Strength += item_str;
-                    Equipment.Dexterity += item_dex;
-                    Equipment.Vitality += item_vit;
-                    Equipment.Energy += item_energy;
-                    Equipment.MagicFind += item_magic;
-                    Equipment.FCR += item_fcr;
-                }
+                int.TryParse(box_stats_str.Text, out req_str);
+                int.TryParse(box_stats_dex.Text, out req_dex);
+                int.TryParse(box_stats_level.Text, out req_lvl);
+                int.TryParse(item.GetValue(req_strength), out item_str);
+                int.TryParse(item.GetValue(req_dexterity), out item_dex);
+                int.TryParse(item.GetValue(req_level), out item_level);
+                
+                if (req_str < item_str)
+                    box_stats_str.Text = item_str.ToString();
+                if (req_dex < item_dex)
+                    box_stats_dex.Text = item_dex.ToString();
+                if (req_lvl < item_level)
+                    box_stats_level.Text = item_level.ToString();
+                
+                int.TryParse(item.GetValue(strength), out item_str);
+                int.TryParse(item.GetValue(dexterity), out item_dex);
+                int.TryParse(item.GetValue(vitality), out item_vit);
+                int.TryParse(item.GetValue(energy), out item_energy);
+                int.TryParse(item.GetValue(magicFind), out item_magic);
+                int.TryParse(item.GetValue(fcr), out item_fcr);
+                int.TryParse(item.GetValue(res_fire), out int fire);
+                int.TryParse(item.GetValue(res_light), out int light);
+                int.TryParse(item.GetValue(res_cold), out int cold);
+                int.TryParse(item.GetValue(res_poison), out int poison);
+                
+                Equipment.Strength += item_str;
+                Equipment.Dexterity += item_dex;
+                Equipment.Vitality += item_vit;
+                Equipment.Energy += item_energy;
+                Equipment.MagicFind += item_magic;
+                Equipment.FCR += item_fcr;
+                Equipment.Resist_Fire += fire;
+                Equipment.Resist_Light += light;
+                Equipment.Resist_Cold += cold;
+                Equipment.Resist_Poison += poison;
             }
             UpdateStats();
         }
@@ -840,6 +922,12 @@ namespace D2CharacterPlanner
             box_attr_dexterity_LostFocus(null, null);
             box_attr_vitality_LostFocus(null, null);
             box_attr_energy_LostFocus(null, null);
+            box_attr_mf.Text = Equipment.MagicFind.ToString();
+            box_attr_fcr.Text = Equipment.FCR.ToString();
+            box_resist_fire.Text = Equipment.Resist_Fire.ToString();
+            box_resist_light.Text = Equipment.Resist_Light.ToString();
+            box_resist_cold.Text = Equipment.Resist_Cold.ToString();
+            box_resist_poison.Text = Equipment.Resist_Poison.ToString();
         }
         bool flag;
         public MainWindow()
@@ -943,8 +1031,8 @@ namespace D2CharacterPlanner
                 }
                 if (classFlag)
                 {
-                    UpdateStats();
                     classFlag = false;
+                    UpdateStats();
                 }
                 if (flag)
                 {

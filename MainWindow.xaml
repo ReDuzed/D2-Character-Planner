@@ -19,26 +19,48 @@
             <RadioButton x:Name="class_druid" Content="Druid" HorizontalAlignment="Left" Margin="121,69,0,0" VerticalAlignment="Top" Checked="ClassCheck" TabIndex="6"/>
             <RadioButton x:Name="class_sorc" Content="Sorceress" HorizontalAlignment="Left" Margin="121,49,0,0" VerticalAlignment="Top" Checked="ClassCheck" TabIndex="5"/>
         </Grid>
-        <Grid Margin="10,197,768,0" Background="#FFF0F0F0" VerticalAlignment="Top" Height="187">
-            <Label Content="Attributes" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-            <TextBox x:Name="box_attr_strength" HorizontalAlignment="Left" Margin="170,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" LostFocus="box_attr_strength_LostFocus" GotFocus="box_attr_strength_LostFocus" IsReadOnly="True"/>
-            <TextBox x:Name="box_attr_dexterity" HorizontalAlignment="Left" Margin="170,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" LostFocus="box_attr_dexterity_LostFocus" GotFocus="box_attr_dexterity_LostFocus" IsReadOnly="True"/>
-            <TextBox x:Name="box_attr_vitality" HorizontalAlignment="Left" Margin="170,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" LostFocus="box_attr_vitality_LostFocus" GotFocus="box_attr_vitality_LostFocus" IsReadOnly="True"/>
-            <TextBox x:Name="box_attr_energy" HorizontalAlignment="Left" Margin="170,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" LostFocus="box_attr_energy_LostFocus" GotFocus="box_attr_energy_LostFocus" IsReadOnly="True"/>
-            <Label Content="Strength" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"/>
-            <Label Content="Dexterity" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top"/>
-            <Label Content="Vitality" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top"/>
-            <Label Content="Energy" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="box_attr_mf" HorizontalAlignment="Left" Margin="129,138,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" IsReadOnly="True"/>
-            <TextBox x:Name="box_attr_fcr" HorizontalAlignment="Left" Margin="129,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" IsReadOnly="True"/>
-            <Label Content="Magic Find" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
-            <Label Content="FCR" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
-            <Label Content="base" HorizontalAlignment="Left" Margin="129,15,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="box_attr_base_strength" HorizontalAlignment="Left" Margin="129,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" TextChanged="box_attr_base_strength_TextChanged" TabIndex="8"/>
-            <TextBox x:Name="box_attr_base_dexterity" HorizontalAlignment="Left" Margin="129,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" TextChanged="box_attr_base_dexterity_TextChanged" TabIndex="9"/>
-            <TextBox x:Name="box_attr_base_vitality" HorizontalAlignment="Left" Margin="129,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" TextChanged="box_attr_base_vitality_TextChanged" TabIndex="10"/>
-            <TextBox x:Name="box_attr_base_energy" HorizontalAlignment="Left" Margin="129,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" TextChanged="box_attr_base_energy_TextChanged" TabIndex="11"/>
-        </Grid>
+        <TabControl Margin="10,197,768,0" Background="#FFF0F0F0" VerticalAlignment="Top" Height="187">
+            <TabItem Header="Stats">
+                <Grid>
+                    <Label Content="Attributes" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                    <TextBox x:Name="box_attr_strength" HorizontalAlignment="Left" Margin="163,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" LostFocus="box_attr_strength_LostFocus" GotFocus="box_attr_strength_LostFocus" IsReadOnly="True"/>
+                    <TextBox x:Name="box_attr_dexterity" HorizontalAlignment="Left" Margin="163,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" LostFocus="box_attr_dexterity_LostFocus" GotFocus="box_attr_dexterity_LostFocus" IsReadOnly="True"/>
+                    <TextBox x:Name="box_attr_vitality" HorizontalAlignment="Left" Margin="163,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" LostFocus="box_attr_vitality_LostFocus" GotFocus="box_attr_vitality_LostFocus" IsReadOnly="True"/>
+                    <TextBox x:Name="box_attr_energy" HorizontalAlignment="Left" Margin="163,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" LostFocus="box_attr_energy_LostFocus" GotFocus="box_attr_energy_LostFocus" IsReadOnly="True"/>
+                    <Label Content="Strength" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Dexterity" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Vitality" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Energy" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top"/>
+                    <Label Content="base" HorizontalAlignment="Left" Margin="122,15,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="box_attr_base_strength" HorizontalAlignment="Left" Margin="122,46,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="36" TextChanged="box_attr_base_strength_TextChanged" TabIndex="8"/>
+                    <TextBox x:Name="box_attr_base_dexterity" HorizontalAlignment="Left" Margin="122,69,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="36" TextChanged="box_attr_base_dexterity_TextChanged" TabIndex="9"/>
+                    <TextBox x:Name="box_attr_base_vitality" HorizontalAlignment="Left" Margin="122,92,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="36" TextChanged="box_attr_base_vitality_TextChanged" TabIndex="10"/>
+                    <TextBox x:Name="box_attr_base_energy" HorizontalAlignment="Left" Margin="122,115,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="36" TextChanged="box_attr_base_energy_TextChanged" TabIndex="11"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Resists">
+                <Grid>
+                    <Label Content="Resistances" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                    <TextBox x:Name="box_resist_fire" HorizontalAlignment="Left" Margin="163,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" LostFocus="box_attr_strength_LostFocus" GotFocus="box_attr_strength_LostFocus" IsReadOnly="True"/>
+                    <TextBox x:Name="box_resist_light" HorizontalAlignment="Left" Margin="163,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" LostFocus="box_attr_dexterity_LostFocus" GotFocus="box_attr_dexterity_LostFocus" IsReadOnly="True"/>
+                    <TextBox x:Name="box_resist_cold" HorizontalAlignment="Left" Margin="163,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" LostFocus="box_attr_vitality_LostFocus" GotFocus="box_attr_vitality_LostFocus" IsReadOnly="True"/>
+                    <TextBox x:Name="box_resist_poison" HorizontalAlignment="Left" Margin="163,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" LostFocus="box_attr_energy_LostFocus" GotFocus="box_attr_energy_LostFocus" IsReadOnly="True"/>
+                    <Label Content="Fire" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Lightning" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Cold" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Poison" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Misc.">
+                <Grid>
+                    <TextBox x:Name="box_attr_mf" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="73" IsReadOnly="True" Margin="122,46,0,0"/>
+                    <TextBox x:Name="box_attr_fcr" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="73" IsReadOnly="True" Margin="122,69,0,0"/>
+                    <Label Content="Utility" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                    <Label Content="Magic Find" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"/>
+                    <Label Content="FCR" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
         <Grid Margin="10,389,768,0" Background="#FFF0F0F0" VerticalAlignment="Top" Height="131">
             <Label Content="Required Stats" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
             <Label Content="Strength" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top"/>
@@ -61,16 +83,16 @@
             <Label Content="Main hand" HorizontalAlignment="Left" Margin="10,294,0,0" VerticalAlignment="Top"/>
             <Label Content="Off hand" HorizontalAlignment="Left" Margin="10,325,0,0" VerticalAlignment="Top"/>
             <Label Content="Charms" HorizontalAlignment="Left" Margin="10,356,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label_equip_helm" Content="..." HorizontalAlignment="Left" Margin="120,49,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label_equip_bodyarmor" Content="..." HorizontalAlignment="Left" Margin="120,77,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label_equip_gloves" Content="..." HorizontalAlignment="Left" Margin="120,108,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label_equip_belt" Content="..." HorizontalAlignment="Left" Margin="120,139,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label_equip_boots" Content="..." HorizontalAlignment="Left" Margin="120,170,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label_equip_amulet" Content="..." HorizontalAlignment="Left" Margin="120,201,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label_equip_ring1" Content="..." HorizontalAlignment="Left" Margin="120,232,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label_equip_ring2" Content="..." HorizontalAlignment="Left" Margin="120,263,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label_equip_mainh" Content="..." HorizontalAlignment="Left" Margin="120,294,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="label_equip_offh" Content="..." HorizontalAlignment="Left" Margin="120,325,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label_equip_helm" Content="..." HorizontalAlignment="Left" Margin="120,49,0,0" VerticalAlignment="Top" MouseEnter="Equipment_MouseEnter" MouseLeave="Equipment_MouseLeave"/>
+            <Label x:Name="label_equip_bodyarmor" Content="..." HorizontalAlignment="Left" Margin="120,77,0,0" VerticalAlignment="Top" MouseEnter="Equipment_MouseEnter" MouseLeave="Equipment_MouseLeave"/>
+            <Label x:Name="label_equip_gloves" Content="..." HorizontalAlignment="Left" Margin="120,108,0,0" VerticalAlignment="Top" MouseEnter="Equipment_MouseEnter" MouseLeave="Equipment_MouseLeave"/>
+            <Label x:Name="label_equip_belt" Content="..." HorizontalAlignment="Left" Margin="120,139,0,0" VerticalAlignment="Top" MouseEnter="Equipment_MouseEnter" MouseLeave="Equipment_MouseLeave"/>
+            <Label x:Name="label_equip_boots" Content="..." HorizontalAlignment="Left" Margin="120,170,0,0" VerticalAlignment="Top" MouseEnter="Equipment_MouseEnter" MouseLeave="Equipment_MouseLeave"/>
+            <Label x:Name="label_equip_amulet" Content="..." HorizontalAlignment="Left" Margin="120,201,0,0" VerticalAlignment="Top" MouseEnter="Equipment_MouseEnter" MouseLeave="Equipment_MouseLeave"/>
+            <Label x:Name="label_equip_ring1" Content="..." HorizontalAlignment="Left" Margin="120,232,0,0" VerticalAlignment="Top" MouseEnter="Equipment_MouseEnter" MouseLeave="Equipment_MouseLeave"/>
+            <Label x:Name="label_equip_ring2" Content="..." HorizontalAlignment="Left" Margin="120,263,0,0" VerticalAlignment="Top" MouseEnter="Equipment_MouseEnter" MouseLeave="Equipment_MouseLeave"/>
+            <Label x:Name="label_equip_mainh" Content="..." HorizontalAlignment="Left" Margin="120,294,0,0" VerticalAlignment="Top" MouseEnter="Equipment_MouseEnter" MouseLeave="Equipment_MouseLeave"/>
+            <Label x:Name="label_equip_offh" Content="..." HorizontalAlignment="Left" Margin="120,325,0,0" VerticalAlignment="Top" MouseEnter="Equipment_MouseEnter" MouseLeave="Equipment_MouseLeave"/>
             <ComboBox x:Name="combo_equip_charms" HorizontalAlignment="Left" Margin="120,358,0,0" VerticalAlignment="Top" Width="85"/>
             <Button x:Name="button_x_helm" Content="X" HorizontalAlignment="Left" Margin="221,49,0,0" VerticalAlignment="Top" Click="button_x_helm_Click" TabIndex="12"/>
             <Button x:Name="button_x_bodyarmor" Content="X" HorizontalAlignment="Left" Margin="221,80,0,0" VerticalAlignment="Top" Click="button_x_bodyarmor_Click" TabIndex="13"/>
@@ -83,7 +105,7 @@
             <Button x:Name="button_x_mainh" Content="X" HorizontalAlignment="Left" Margin="221,297,0,0" VerticalAlignment="Top" Click="button_x_mainh_Click" TabIndex="20"/>
             <Button x:Name="button_x_offh" Content="X" HorizontalAlignment="Left" Margin="221,328,0,0" VerticalAlignment="Top" Click="button_x_offh_Click" TabIndex="21"/>
             <Button x:Name="button_x_charms" Content="X" HorizontalAlignment="Left" Margin="221,359,0,0" VerticalAlignment="Top" Click="button_x_charms_Click" TabIndex="22"/>
-            <TextBox x:Name="box_loadout_name" HorizontalAlignment="Left" Margin="69,418,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Height="20" FontSize="13" TabIndex="23"/>
+            <TextBox x:Name="box_loadout_name" HorizontalAlignment="Left" Margin="69,418,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="162" Height="20" FontSize="13" TabIndex="23"/>
             <Label Content="Loadout" HorizontalAlignment="Left" Margin="10,415,0,0" VerticalAlignment="Top"/>
             <Button x:Name="button_remove_loadout" Content="Remove" HorizontalAlignment="Left" Margin="11,443,0,0" VerticalAlignment="Top" Width="70" TabIndex="24" Click="RemoveLoadout_Click"/>
             <Button x:Name="button_save_loadout" Content="Save" HorizontalAlignment="Center" Margin="0,443,0,0" VerticalAlignment="Top" Width="70" TabIndex="25" Click="SaveLoadout_Click"/>
@@ -102,32 +124,56 @@
             <RadioButton x:Name="gear_shields" Content="Shields" HorizontalAlignment="Left" Margin="410,46,0,0" VerticalAlignment="Top" Checked="gear_helm_Checked" TabIndex="35"/>
             <RadioButton x:Name="gear_charms" Content="Charms" HorizontalAlignment="Left" Margin="410,66,0,0" VerticalAlignment="Top" Checked="gear_helm_Checked" TabIndex="36"/>
         </Grid>
-        <Grid Margin="483,148,362,0" Background="#FFF0F0F0" VerticalAlignment="Top" Height="344">
-            <Label Content="Add Gear" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-            <Label Content="Name" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="box_gear_name" HorizontalAlignment="Left" Margin="78,46,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" TabIndex="37"/>
-            <TextBox x:Name="box_gear_str" HorizontalAlignment="Left" Margin="78,69,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" TabIndex="38"/>
-            <TextBox x:Name="box_gear_dex" HorizontalAlignment="Left" Margin="78,92,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" TabIndex="39"/>
-            <TextBox x:Name="box_gear_vit" HorizontalAlignment="Left" Margin="78,115,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" TabIndex="40"/>
-            <TextBox x:Name="box_gear_energy" HorizontalAlignment="Left" Margin="78,138,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" TabIndex="41"/>
-            <TextBox x:Name="box_gear_magic" HorizontalAlignment="Left" Margin="78,161,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" TabIndex="42"/>
-            <TextBox x:Name="box_gear_fcr" HorizontalAlignment="Left" Margin="78,184,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" TabIndex="43"/>
-            <Label Content="Strength" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top"/>
-            <Label Content="Dexterity" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top"/>
-            <Label Content="Vitality" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top"/>
-            <Label Content="Energy" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
-            <Label Content="Magic Find" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
-            <Label Content="FCR" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top"/>
-            <Button x:Name="button_gear_add" Content="Add" HorizontalAlignment="Left" Margin="111,316,0,0" VerticalAlignment="Top" Width="33" Click="AddGear_Click" TabIndex="47"/>
-            <Label Content="Stat Requirements" HorizontalAlignment="Left" Margin="10,211,0,0" VerticalAlignment="Top" FontSize="13" FontWeight="Bold"/>
-            <Label Content="Strength" HorizontalAlignment="Left" Margin="10,243,0,0" VerticalAlignment="Top"/>
-            <Label Content="Dexterity" HorizontalAlignment="Left" Margin="10,266,0,0" VerticalAlignment="Top"/>
-            <Label Content="Level" HorizontalAlignment="Left" Margin="10,289,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="box_gear_req_str" HorizontalAlignment="Left" Margin="78,247,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" TabIndex="44"/>
-            <TextBox x:Name="box_gear_req_dex" HorizontalAlignment="Left" Margin="78,270,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" TabIndex="45"/>
-            <TextBox x:Name="box_gear_req_level" HorizontalAlignment="Left" Margin="78,293,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" TabIndex="46"/>
-            <CheckBox x:Name="checkbox_charm" Content="Charm" HorizontalAlignment="Left" Margin="15,319,0,0" VerticalAlignment="Top" TabIndex="48"/>
+        <Grid Margin="483,148,362,10" Background="#FFF0F0F0">
+            <Label Content="Add Gear" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Margin="10,10,0,0"/>
+            <Label Content="Name" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="box_gear_name" HorizontalAlignment="Left" Margin="78,45,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="66" TabIndex="37"/>
+            <Button x:Name="button_gear_add" Content="Add" HorizontalAlignment="Left" Margin="111,68,0,0" VerticalAlignment="Top" Width="33" Click="AddGear_Click" TabIndex="47"/>
+            <CheckBox x:Name="checkbox_charm" Content="Charm" HorizontalAlignment="Left" Margin="14,70,0,0" VerticalAlignment="Top" TabIndex="48"/>
         </Grid>
+        <TabControl Margin="483,243,362,0" Background="#FFF0F0F0" VerticalAlignment="Top" Height="277">
+            <TabItem Header="Traits">
+                <Grid>
+                    <Label Content="Additive Traits" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                    <TextBox x:Name="box_gear_str" HorizontalAlignment="Left" Margin="78,47,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" TabIndex="38"/>
+                    <TextBox x:Name="box_gear_dex" HorizontalAlignment="Left" Margin="78,72,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" TabIndex="39"/>
+                    <TextBox x:Name="box_gear_vit" HorizontalAlignment="Left" Margin="78,95,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" TabIndex="40"/>
+                    <TextBox x:Name="box_gear_energy" HorizontalAlignment="Left" Margin="78,118,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" TabIndex="41"/>
+                    <TextBox x:Name="box_gear_magic" HorizontalAlignment="Left" Margin="78,141,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" TabIndex="42"/>
+                    <TextBox x:Name="box_gear_fcr" HorizontalAlignment="Left" Margin="78,164,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" TabIndex="43"/>
+                    <Label Content="Strength" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Dexterity" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Vitality" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Energy" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Magic Find" HorizontalAlignment="Left" Margin="10,137,0,0" VerticalAlignment="Top"/>
+                    <Label Content="FCR" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Resists">
+                <Grid>
+                    <Label Content="Additive Resists" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"/>
+                    <Label Content="Fire" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Lightning" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Cold" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Poison" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="box_gear_fire" HorizontalAlignment="Left" Margin="76,45,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" TabIndex="43"/>
+                    <TextBox x:Name="box_gear_light" HorizontalAlignment="Left" Margin="76,68,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" TabIndex="43"/>
+                    <TextBox x:Name="box_gear_cold" HorizontalAlignment="Left" Margin="76,91,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" TabIndex="43"/>
+                    <TextBox x:Name="box_gear_poison" HorizontalAlignment="Left" Margin="76,114,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="67" TabIndex="43"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Req.">
+                <Grid>
+                    <Label Content="Stat Requirements" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="13" FontWeight="Bold"/>
+                    <Label Content="Strength" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Dexterity" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Level" HorizontalAlignment="Left" Margin="10,84,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="box_gear_req_str" HorizontalAlignment="Left" Margin="73,42,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="66" TabIndex="44"/>
+                    <TextBox x:Name="box_gear_req_dex" HorizontalAlignment="Left" Margin="73,65,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="66" TabIndex="45"/>
+                    <TextBox x:Name="box_gear_req_level" HorizontalAlignment="Left" Margin="73,88,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="66" TabIndex="46"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
         <Grid Margin="819,258,10,0" Background="#FFF0F0F0" VerticalAlignment="Top" Height="106">
             <Label Content="Charms" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
             <ComboBox x:Name="combo_gear_charms" HorizontalAlignment="Center" Margin="0,46,0,0" VerticalAlignment="Top" Width="151" SelectionChanged="combo_gear_charms_SelectionChanged" TabIndex="55"/>
@@ -149,5 +195,6 @@
             <Button Content="Remove" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Margin="96,75,0,0" Click="ResistButton_Click" TabIndex="52"/>
         </Grid>
         <Button x:Name="button_additem" Content="Equip Item" HorizontalAlignment="Left" Margin="643,369,0,0" VerticalAlignment="Top" Width="347" Click="EquipItem_Click" TabIndex="57"/>
+        <TextBlock x:Name="block_info_gear" HorizontalAlignment="Left" Margin="706,454,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Background="#AADCDCDC" ScrollViewer.VerticalScrollBarVisibility="Disabled" FontFamily="Consolas" FontSize="11"/>
     </Grid>
 </Window>
