@@ -334,6 +334,47 @@ namespace D2CharacterPlanner
             fcr_flag = "isFcr",
             magic_flag = "isMagicFind",
             resist_flag = "isResist";
+
+        private void Charms_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Equipment_MouseLeave(null, null);
+        }
+
+        private void Charms_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ComboBox box = (ComboBox)sender;
+            if (box.Text.Length == 0)
+                return;
+            var window = this.PointToScreen(new System.Windows.Point());
+            draw_Block = DB.block.FirstOrDefault(t => t.GetValue(name) == box.Text);
+            draw_Position = box.PointToScreen(new System.Windows.Point()) - window;
+            string text = string.Format(
+                "+ Strength:     {0}\n" +
+                "+ Dexterity:    {1}\n" +
+                "+ Vitality:     {2}\n" +
+                "+ Energy:       {3}\n" +
+                "Magic Find %:   {4}\n" +
+                "FCR %:          {5}\n" +
+                "Fire res.:      {6}\n" +
+                "Lightning res.: {7}\n" +
+                "Cold res.:      {8}\n" +
+                "Poison res.:    {9}",
+                draw_Block.GetValue(strength),
+                draw_Block.GetValue(dexterity),
+                draw_Block.GetValue(vitality),
+                draw_Block.GetValue(energy),
+                draw_Block.GetValue(magicFind),
+                draw_Block.GetValue(fcr),
+                draw_Block.GetValue(res_fire),
+                draw_Block.GetValue(res_light),
+                draw_Block.GetValue(res_cold),
+                draw_Block.GetValue(res_poison)
+            );
+            block_info_gear.Margin = new Thickness(draw_Position.X + 45, draw_Position.Y - 60, 0, 0);
+            block_info_gear.Text = text;
+            block_info_gear.Visibility = Visibility.Visible;
+        }
+
         System.Windows.Vector draw_Position;                 
         Block draw_Block;
         const string Empty = "...";
@@ -367,7 +408,7 @@ namespace D2CharacterPlanner
                 draw_Block.GetValue(res_cold),
                 draw_Block.GetValue(res_poison)
             );
-            block_info_gear.Margin = new Thickness(draw_Position.X + 15, draw_Position.Y + 30, 0, 0);
+            block_info_gear.Margin = new Thickness(draw_Position.X + 45, draw_Position.Y - 60, 0, 0);
             block_info_gear.Text = text;
             block_info_gear.Visibility = Visibility.Visible;
         }
@@ -881,40 +922,34 @@ namespace D2CharacterPlanner
             flag = true;
         }
 
-        internal bool[] classSelect
+        internal bool[] classSelect()
         { 
-            get 
-            { 
-                return new bool[]
-                {
-                    class_assa.IsChecked.Value,
-                    class_amazon.IsChecked.Value,
-                    class_necro.IsChecked.Value,
-                    class_barb.IsChecked.Value,
-                    class_sorc.IsChecked.Value,
-                    class_druid.IsChecked.Value,
-                    class_paladin.IsChecked.Value
-                };
-            }
+            return new bool[]
+            {
+                class_assa.IsChecked.Value,
+                class_amazon.IsChecked.Value,
+                class_necro.IsChecked.Value,
+                class_barb.IsChecked.Value,
+                class_sorc.IsChecked.Value,
+                class_druid.IsChecked.Value,
+                class_paladin.IsChecked.Value
+            };
         }
-        internal bool[] gearSelect
+        internal bool[] gearSelect()
         {
-            get 
-            { 
-                return new bool[]
-                {
-                    gear_helm.IsChecked.Value,
-                    gear_bodyarmor.IsChecked.Value,
-                    gear_gloves.IsChecked.Value,
-                    gear_belt.IsChecked.Value,
-                    gear_boots.IsChecked.Value,
-                    gear_amulet.IsChecked.Value,
-                    gear_rings.IsChecked.Value,
-                    gear_weapons.IsChecked.Value,
-                    gear_shields.IsChecked.Value,
-                    gear_charms.IsChecked.Value
-                };
-            }
+            return new bool[]
+            {
+                gear_helm.IsChecked.Value,
+                gear_bodyarmor.IsChecked.Value,
+                gear_gloves.IsChecked.Value,
+                gear_belt.IsChecked.Value,
+                gear_boots.IsChecked.Value,
+                gear_amulet.IsChecked.Value,
+                gear_rings.IsChecked.Value,
+                gear_weapons.IsChecked.Value,
+                gear_shields.IsChecked.Value,
+                gear_charms.IsChecked.Value
+            };
         }
         private void UpdateStats()
         {
@@ -938,9 +973,9 @@ namespace D2CharacterPlanner
             Action method = null;
             method = new Action(() => 
             { 
-                for (int i = 0; i < classSelect.Length; i++)
+                for (int i = 0; i < classSelect().Length; i++)
                 {
-                    if (classSelect[i])
+                    if (classSelect()[i])
                     { 
                         switch ((byte)i)
                         {
@@ -989,9 +1024,9 @@ namespace D2CharacterPlanner
                         }
                     }
                 }
-                for (int i = 0; i < gearSelect.Length; i++)
+                for (int i = 0; i < gearSelect().Length; i++)
                 {
-                    if (gearSelect[i])
+                    if (gearSelect()[i])
                     { 
                         switch ((byte)i)
                         {
@@ -1036,7 +1071,6 @@ namespace D2CharacterPlanner
                 }
                 if (flag)
                 {
-                    flag = false;
                     combo_gear_fcr.Items.Clear();
                     combo_gear_resist.Items.Clear();
                     combo_gear_magic.Items.Clear();
@@ -1074,6 +1108,7 @@ namespace D2CharacterPlanner
                             }
                         }
                     }
+                    flag = false;
                 }
                 Dispatcher.BeginInvoke(method, DispatcherPriority.Background, null);
             });

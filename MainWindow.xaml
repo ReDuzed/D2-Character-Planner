@@ -93,7 +93,7 @@
             <Label x:Name="label_equip_ring2" Content="..." HorizontalAlignment="Left" Margin="120,263,0,0" VerticalAlignment="Top" MouseEnter="Equipment_MouseEnter" MouseLeave="Equipment_MouseLeave"/>
             <Label x:Name="label_equip_mainh" Content="..." HorizontalAlignment="Left" Margin="120,294,0,0" VerticalAlignment="Top" MouseEnter="Equipment_MouseEnter" MouseLeave="Equipment_MouseLeave"/>
             <Label x:Name="label_equip_offh" Content="..." HorizontalAlignment="Left" Margin="120,325,0,0" VerticalAlignment="Top" MouseEnter="Equipment_MouseEnter" MouseLeave="Equipment_MouseLeave"/>
-            <ComboBox x:Name="combo_equip_charms" HorizontalAlignment="Left" Margin="120,358,0,0" VerticalAlignment="Top" Width="85"/>
+            <ComboBox x:Name="combo_equip_charms" HorizontalAlignment="Left" Margin="120,358,0,0" VerticalAlignment="Top" Width="85" MouseEnter="Charms_MouseEnter" MouseLeave="Charms_MouseLeave"/>
             <Button x:Name="button_x_helm" Content="X" HorizontalAlignment="Left" Margin="221,49,0,0" VerticalAlignment="Top" Click="button_x_helm_Click" TabIndex="12"/>
             <Button x:Name="button_x_bodyarmor" Content="X" HorizontalAlignment="Left" Margin="221,80,0,0" VerticalAlignment="Top" Click="button_x_bodyarmor_Click" TabIndex="13"/>
             <Button x:Name="button_x_gloves" Content="X" HorizontalAlignment="Left" Margin="221,111,0,0" VerticalAlignment="Top" Click="button_x_gloves_Click" TabIndex="14"/>
@@ -195,6 +195,6 @@
             <Button Content="Remove" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Margin="96,75,0,0" Click="ResistButton_Click" TabIndex="52"/>
         </Grid>
         <Button x:Name="button_additem" Content="Equip Item" HorizontalAlignment="Left" Margin="643,369,0,0" VerticalAlignment="Top" Width="347" Click="EquipItem_Click" TabIndex="57"/>
-        <TextBlock x:Name="block_info_gear" HorizontalAlignment="Left" Margin="706,454,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Background="#AADCDCDC" ScrollViewer.VerticalScrollBarVisibility="Disabled" FontFamily="Consolas" FontSize="11"/>
+        <TextBlock x:Name="block_info_gear" HorizontalAlignment="Left" Margin="706,454,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Background="#BFE6E6E6" ScrollViewer.VerticalScrollBarVisibility="Disabled" FontFamily="Consolas" FontSize="11"/>
     </Grid>
 </Window>
